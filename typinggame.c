@@ -7,22 +7,37 @@
 
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
 
 int main(void){
 
     char ch[100];
     int i = 0;
+    int j;
+    
+    char Ans[3][7] ={"star", "place", "zoo"};
 
     fgets(ch , sizeof(ch), stdin);
- 
+    ch[strcspn(ch, "\n")] = '\0';
+
     while(ch[i] != '\0'){
-        if(isspace(ch[i])){
-            ch[i] = '*';
+        if(ch[i] == ' '){
+            j = i;
+            while(ch[j] != '\0'){
+                ch[j] = ch[j+1];
+                j++;
+            }
+        }else {
+            i++;
         }
-        i++;
+        
     }
 
-    printf("%s", ch);
+    printf("%s\n", ch);
+
+    if(strcmp(ch , Ans[0]) == 0){
+        printf("*ok you got it!");
+    }
 
     return 0;
 }
