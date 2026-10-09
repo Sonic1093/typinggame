@@ -59,6 +59,7 @@ int main(void){
         
     }
     */
+   time_t start_T = time(NULL);
     for(int i=0; i<QUE_COUNT; i++){
 
         // radom 質問を作る
@@ -78,13 +79,18 @@ int main(void){
             printf("ミスがあります、もう一度！\n");
             scanf("%s", &ch);
         }
-        
-        printf("*ok you get it!");
-
     }
+    time_t end_T = time(NULL);
 
-    printf("終了！！");
+    int test_T = end_T - start_T;
 
+    printf("！！終了！！\n");
+
+    if(test_T >= 60){
+        printf("所要時間：%d分%d秒\n", test_T/60, test_T%60);
+    }else{
+        printf("所要時間：%d秒\n", test_T);
+    }
 
     return 0;
 }
