@@ -8,6 +8,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include<time.h>
+
 #define QUE_COUNT 10
 #define ANS_COUNT 10
 
@@ -41,7 +43,7 @@ int main(void){
     
     
     
-    /*//スペースが入っても読み取れる　日本語は無理です。englishはＯｋです。　
+    /*//スペースが入っても読み取れる　日本語は無理です。englishはＯｋです.最初は回答を英語で表示すると思ったから！
     //ユーザーの入力
     fgets(ch , sizeof(ch), stdin);
     ch[strcspn(ch, "\n")] = '\0';
@@ -59,14 +61,35 @@ int main(void){
         
     }
     */
-   time_t start_T = time(NULL);
+
+    srand((unsigned int)time(NULL));
+    time_t start_T = time(NULL);
+    
+    /* 質問の重複を防ぐ */
+    int index[QUE_COUNT];
+    for (int i = 0; i < QUE_COUNT; i++) {
+        index[i] = i;
+    }
+    for (int i = QUE_COUNT - 1; i > 0; i--) {
+        int randQue = rand() % (i + 1);
+
+        int temp = index[i];
+        index[i] = index[randQue];
+        index[randQue] = temp;
+    }
+
+    
     for(int i=0; i<QUE_COUNT; i++){
 
         // radom 質問を作る
-        srand(time(NULL));
-        int randQue= rand() % 9 + 1;
+    
+        int randQue= rand() % 9;
 
         printf("第%d問\n", i+1);
+
+        //2回の出題は防ぐ
+
+        
         
         printf("%s\n", Que[randQue]);
         
