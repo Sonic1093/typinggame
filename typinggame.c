@@ -83,13 +83,11 @@ int main(void){
 
         // radom ¿–â‚ğì‚é
     
-        int randQue= rand() % 9;
+        int randQue= index[i];
+        
+        
 
         printf("‘æ%d–â\n", i+1);
-
-        //2‰ñ‚Ìo‘è‚Í–h‚®
-
-        
         
         printf("%s\n", Que[randQue]);
         
